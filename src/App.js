@@ -1,23 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from './img/logo.png';
+import { useState } from 'react';
+import './css/App.css';
+
+import Aeropuerto from './aeropuerto';
+import Stack from './stackusers';
 
 function App() {
+
+  const [ComponenteSeleccionado, setComponenteSeleccionado] = useState(() => Aeropuerto);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {/* Menu navegacion */}
+      <nav>
+        <div class="nav-option">
+          <img src={logo} class="logo-nav" alt=''/>
+          <span>
+            Reto Técnico FullStack
+          </span>
+        </div>
+        <div class="nav-option dropdown">
+            <span>☰</span>
+            <div class="dropdown-content">
+              <button class="drop-option" onClick={() => setComponenteSeleccionado(() => Aeropuerto)}>✈ Aeropuerto</button>
+              <button class="drop-option" onClick={() => setComponenteSeleccionado(() => Stack)}>☰ StackOverflow</button>
+            </div>
+        </div>
+      </nav>
+      <main class="container">
+        <ComponenteSeleccionado/>
+      </main>
     </div>
   );
 }
